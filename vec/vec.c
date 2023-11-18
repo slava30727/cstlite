@@ -48,7 +48,7 @@ void Vec_push(Vec mut* const self, Addr const value_ptr) {
 
 AddrMut Vec_pop(Vec mut* const self) {
     return 0 < self->len
-        ? self->ptr + self->elem_size * self->len--
+        ? self->ptr + self->elem_size * --self->len
         : null_mut;
 }
 

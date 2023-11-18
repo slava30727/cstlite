@@ -43,6 +43,6 @@ void Vec_u32_push(Vec_u32 mut* const self, u32 const value) {
 
 u32 mut* Vec_u32_pop(Vec_u32 mut* const self) {
     return 0 < self->len
-        ? self->ptr + sizeof(u32) * self->len--
+        ? self->ptr + sizeof(u32) * --self->len
         : null_mut;
 }

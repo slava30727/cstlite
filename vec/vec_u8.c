@@ -43,6 +43,6 @@ void Vec_u8_push(Vec_u8 mut* const self, u8 const value) {
 
 u8 mut* Vec_u8_pop(Vec_u8 mut* const self) {
     return 0 < self->len
-        ? self->ptr + sizeof(u8) * self->len--
+        ? self->ptr + sizeof(u8) * --self->len
         : null_mut;
 }

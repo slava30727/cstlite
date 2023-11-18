@@ -41,8 +41,8 @@ void Vec_Bool_push(Vec_Bool mut* const self, Bool const value) {
     self->ptr[self->len++] = value;
 }
 
-Bool mut* Vec_Bool_pop(Vec_Bool mut* const self) {
+Bool Vec_Bool_pop(Vec_Bool mut* const self) {
     return 0 < self->len
-        ? (Bool mut*) (self->ptr + 1 * self->len--)
+        ? (Bool) *(self->ptr + 1 * --self->len)
         : null_mut;
 }

@@ -43,6 +43,6 @@ void Vec_char_push(Vec_char mut* const self, char const value) {
 
 char mut* Vec_char_pop(Vec_char mut* const self) {
     return 0 < self->len
-        ? (self->ptr + sizeof(char) * self->len--)
+        ? self->ptr + sizeof(char) * --self->len
         : null_mut;
 }

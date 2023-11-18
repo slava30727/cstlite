@@ -43,6 +43,6 @@ void Vec_i64_push(Vec_i64 mut* const self, i64 const value) {
 
 i64 mut* Vec_i64_pop(Vec_i64 mut* const self) {
     return 0 < self->len
-        ? self->ptr + sizeof(i64) * self->len--
+        ? self->ptr + sizeof(i64) * --self->len
         : null_mut;
 }

@@ -49,6 +49,6 @@ void Vec_String_clear(Vec_String mut* const self) {
 
 String mut* Vec_String_pop(Vec_String mut* const self) {
     return 0 < self->len
-        ? self->ptr + sizeof(String) * self->len--
+        ? self->ptr + sizeof(String) * --self->len
         : null_mut;
 }

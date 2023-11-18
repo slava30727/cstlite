@@ -43,6 +43,6 @@ void Vec_isize_push(Vec_isize mut* const self, isize const value) {
 
 isize mut* Vec_isize_pop(Vec_isize mut* const self) {
     return 0 < self->len
-        ? self->ptr + sizeof(isize) * self->len--
+        ? self->ptr + sizeof(isize) * --self->len
         : null_mut;
 }

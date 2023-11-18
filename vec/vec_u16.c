@@ -24,6 +24,10 @@ void Vec_u16_free(Vec_u16 const* const self) {
     *(Vec_u16 mut*) self = Vec_u16_new();
 }
 
+void Vec_u16_clear(Vec_u16 mut* const self) {
+    self->len = 0;
+}
+
 void Vec_u16_push(Vec_u16 mut* const self, u16 const value) {
     if (null_mut == self->ptr) {
         *self = Vec_u16_with_capacity(1);

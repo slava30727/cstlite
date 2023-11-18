@@ -24,6 +24,10 @@ void Vec_i64_free(Vec_i64 const* const self) {
     *(Vec_i64 mut*) self = Vec_i64_new();
 }
 
+void Vec_i64_clear(Vec_i64 mut* const self) {
+    self->len = 0;
+}
+
 void Vec_i64_push(Vec_i64 mut* const self, i64 const value) {
     if (null_mut == self->ptr) {
         *self = Vec_i64_with_capacity(1);

@@ -24,6 +24,10 @@ void Vec_i8_free(Vec_i8 const* const self) {
     *(Vec_i8 mut*) self = Vec_i8_new();
 }
 
+void Vec_i8_clear(Vec_i8 mut* const self) {
+    self->len = 0;
+}
+
 void Vec_i8_push(Vec_i8 mut* const self, i8 const value) {
     if (null_mut == self->ptr) {
         *self = Vec_i8_with_capacity(1);

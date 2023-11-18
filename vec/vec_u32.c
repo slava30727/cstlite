@@ -24,6 +24,10 @@ void Vec_u32_free(Vec_u32 const* const self) {
     *(Vec_u32 mut*) self = Vec_u32_new();
 }
 
+void Vec_u32_clear(Vec_u32 mut* const self) {
+    self->len = 0;
+}
+
 void Vec_u32_push(Vec_u32 mut* const self, u32 const value) {
     if (null_mut == self->ptr) {
         *self = Vec_u32_with_capacity(1);

@@ -24,6 +24,10 @@ void Vec_Bool_free(Vec_Bool const* const self) {
     *(Vec_Bool mut*) self = Vec_Bool_new();
 }
 
+void Vec_Bool_clear(Vec_Bool mut* const self) {
+    self->len = 0;
+}
+
 void Vec_Bool_push(Vec_Bool mut* const self, Bool const value) {
     if (null_mut == self->ptr) {
         *self = Vec_Bool_with_capacity(1);

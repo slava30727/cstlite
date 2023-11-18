@@ -24,6 +24,10 @@ void Vec_char_free(Vec_char const* const self) {
     *(Vec_char mut*) self = Vec_char_new();
 }
 
+void Vec_char_clear(Vec_char mut* const self) {
+    self->len = 0;
+}
+
 void Vec_char_push(Vec_char mut* const self, char const value) {
     if (null_mut == self->ptr) {
         *self = Vec_char_with_capacity(1);

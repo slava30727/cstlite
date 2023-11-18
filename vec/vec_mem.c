@@ -1,7 +1,3 @@
-#include "vec.c"
-
-
-
 Vec Vec_clone(Vec const* const self) {
     Vec const result = {
         .ptr = malloc(self->elem_size * self->len),
@@ -54,4 +50,32 @@ void Vec_reserve(Vec mut* const self, usize mut additional_cap) {
         : additional_cap;
 
     Vec_reserve_exact(self, additional_cap);
+}
+
+Vec Vec_repeat(usize const count, usize const elem_size, Addr const value_ptr) {
+    Vec mut result = Vec_with_capacity(elem_size, count);
+    result.len = count;
+
+    for (usize mut i = 0; i < count; ++i) {
+        memcpy_s(
+            result.ptr + result.elem_size * i,
+            result.elem_size,
+            value_ptr,
+            elem_size
+        );
+    }
+
+    return result;
+}
+
+void Vec_fill(Vec mut* const self, usize const count, Addr const value_ptr) {
+    if (self->cap < count) {
+        Vec_reserve(self, count - self->cap);
+    }
+
+    self->len = count;
+
+    for (usize mut i = 0; i < self->len; ++i) {
+        Vec_set(self, i, value_ptr);
+    }
 }

@@ -1,7 +1,3 @@
-#include "vec_Bool.c"
-
-
-
 Vec_Bool Vec_Bool_clone(Vec_Bool const* const self) {
     Vec_Bool const result = {
         .ptr = malloc(1 * self->len),
@@ -51,4 +47,23 @@ void Vec_Bool_reserve(Vec_Bool mut* const self, usize mut additional_cap) {
         : additional_cap;
 
     Vec_Bool_reserve_exact(self, additional_cap);
+}
+
+Vec_Bool Vec_Bool_repeat(usize const count, Bool const value) {
+    Vec_Bool mut result = Vec_Bool_with_capacity(count);
+    result.len = count;
+
+    memset(result.ptr, value, count);
+
+    return result;
+}
+
+void Vec_Bool_fill(Vec_Bool mut* const self, usize const count, Bool const value) {
+    if (self->cap < count) {
+        Vec_Bool_reserve(self, count - self->cap);
+    }
+
+    self->len = count;
+
+    memset(self->ptr, value, count);
 }

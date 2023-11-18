@@ -1,13 +1,3 @@
-#include "../types/marker.h"
-#include "../types/int.h"
-#include "../types/mem.h"
-#include "../types/bool.h"
-
-#include <stdlib.h>
-#include <string.h>
-
-
-
 typedef struct Vec_Bool {
     u8 mut* ptr;
     usize len, cap;
@@ -34,6 +24,10 @@ void Vec_Bool_free(Vec_Bool const* const self) {
     *(Vec_Bool mut*) self = Vec_Bool_new();
 }
 
+void Vec_Bool_clear(Vec_Bool mut* const self) {
+    self->len = 0;
+}
+
 void Vec_Bool_push(Vec_Bool mut* const self, Bool const value) {
     if (null_mut == self->ptr) {
         *self = Vec_Bool_with_capacity(1);
@@ -47,8 +41,8 @@ void Vec_Bool_push(Vec_Bool mut* const self, Bool const value) {
     self->ptr[self->len++] = value;
 }
 
-Bool mut* Vec_Bool_pop(Vec_Bool mut* const self) {
+Bool Vec_Bool_pop(Vec_Bool mut* const self) {
     return 0 < self->len
-        ? (Bool mut*) (self->ptr + 1 * self->len--)
+        ? (Bool) *(self->ptr + 1 * --self->len)
         : null_mut;
 }

@@ -1,7 +1,3 @@
-#include "vec_i16.c"
-
-
-
 Vec_i16 Vec_i16_clone(Vec_i16 const* const self) {
     Vec_i16 const result = {
         .ptr = malloc(sizeof(i16) * self->len),
@@ -51,4 +47,27 @@ void Vec_i16_reserve(Vec_i16 mut* const self, usize mut additional_cap) {
         : additional_cap;
 
     Vec_i16_reserve_exact(self, additional_cap);
+}
+
+Vec_i16 Vec_i16_repeat(usize const count, i16 const value) {
+    Vec_i16 mut result = Vec_i16_with_capacity(count);
+    result.len = count;
+
+    for (usize mut i = 0; i < result.len; ++i) {
+        result.ptr[i] = value;
+    }
+
+    return result;
+}
+
+void Vec_i16_fill(Vec_i16 mut* const self, usize const count, i16 const value) {
+    if (self->cap < count) {
+        Vec_i16_reserve(self, count - self->cap);
+    }
+
+    self->len = count;
+
+    for (usize mut i = 0; i < self->len; ++i) {
+        self->ptr[i] = value;
+    }
 }

@@ -1,12 +1,3 @@
-#include "../types/marker.h"
-#include "../types/int.h"
-#include "../types/mem.h"
-
-#include <stdlib.h>
-#include <string.h>
-
-
-
 typedef struct Vec_i16 {
     i16 mut* ptr;
     usize len, cap;
@@ -33,6 +24,10 @@ void Vec_i16_free(Vec_i16 const* const self) {
     *(Vec_i16 mut*) self = Vec_i16_new();
 }
 
+void Vec_i16_clear(Vec_i16 mut* const self) {
+    self->len = 0;
+}
+
 void Vec_i16_push(Vec_i16 mut* const self, i16 const value) {
     if (null_mut == self->ptr) {
         *self = Vec_i16_with_capacity(1);
@@ -48,6 +43,6 @@ void Vec_i16_push(Vec_i16 mut* const self, i16 const value) {
 
 i16 mut* Vec_i16_pop(Vec_i16 mut* const self) {
     return 0 < self->len
-        ? self->ptr + sizeof(i16) * self->len--
+        ? self->ptr + sizeof(i16) * --self->len
         : null_mut;
 }

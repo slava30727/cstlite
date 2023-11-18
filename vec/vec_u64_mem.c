@@ -1,7 +1,3 @@
-#include "vec_u64.c"
-
-
-
 Vec_u64 Vec_u64_clone(Vec_u64 const* const self) {
     Vec_u64 const result = {
         .ptr = malloc(sizeof(u64) * self->len),
@@ -51,4 +47,27 @@ void Vec_u64_reserve(Vec_u64 mut* const self, usize mut additional_cap) {
         : additional_cap;
 
     Vec_u64_reserve_exact(self, additional_cap);
+}
+
+Vec_u64 Vec_u64_repeat(usize const count, u64 const value) {
+    Vec_u64 mut result = Vec_u64_with_capacity(count);
+    result.len = count;
+
+    for (usize mut i = 0; i < result.len; ++i) {
+        result.ptr[i] = value;
+    }
+
+    return result;
+}
+
+void Vec_u64_fill(Vec_u64 mut* const self, usize const count, u64 const value) {
+    if (self->cap < count) {
+        Vec_u64_reserve(self, count - self->cap);
+    }
+
+    self->len = count;
+
+    for (usize mut i = 0; i < self->len; ++i) {
+        self->ptr[i] = value;
+    }
 }

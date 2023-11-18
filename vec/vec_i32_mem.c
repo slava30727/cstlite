@@ -1,7 +1,3 @@
-#include "vec_i32.c"
-
-
-
 Vec_i32 Vec_i32_clone(Vec_i32 const* const self) {
     Vec_i32 const result = {
         .ptr = malloc(sizeof(i32) * self->len),
@@ -51,4 +47,27 @@ void Vec_i32_reserve(Vec_i32 mut* const self, usize mut additional_cap) {
         : additional_cap;
 
     Vec_i32_reserve_exact(self, additional_cap);
+}
+
+Vec_i32 Vec_i32_repeat(usize const count, i32 const value) {
+    Vec_i32 mut result = Vec_i32_with_capacity(count);
+    result.len = count;
+
+    for (usize mut i = 0; i < result.len; ++i) {
+        result.ptr[i] = value;
+    }
+
+    return result;
+}
+
+void Vec_i32_fill(Vec_i32 mut* const self, usize const count, i32 const value) {
+    if (self->cap < count) {
+        Vec_i32_reserve(self, count - self->cap);
+    }
+
+    self->len = count;
+
+    for (usize mut i = 0; i < self->len; ++i) {
+        self->ptr[i] = value;
+    }
 }

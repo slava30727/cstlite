@@ -1,12 +1,3 @@
-#include "../types/marker.h"
-#include "../types/int.h"
-#include "../types/mem.h"
-
-#include <stdlib.h>
-#include <string.h>
-
-
-
 typedef struct Vec {
     u8 mut* ptr;
     usize len, elem_size, cap;
@@ -57,6 +48,22 @@ void Vec_push(Vec mut* const self, Addr const value_ptr) {
 
 AddrMut Vec_pop(Vec mut* const self) {
     return 0 < self->len
-        ? self->ptr + self->elem_size * self->len--
+        ? self->ptr + self->elem_size * --self->len
         : null_mut;
+}
+
+AddrMut Vec_get_address(Vec const* const self, usize const index) {
+    return self->ptr + self->elem_size * index;
+}
+
+#define Vec_get(self, Type, index) \
+    ((Type mut*) Vec_get_address(self, index))
+
+void Vec_set(Vec mut* const self, usize const index, Addr const value_ptr) {
+    memcpy_s(
+        Vec_get_address(self, index),
+        self->elem_size,
+        value_ptr,
+        self->elem_size
+    );
 }

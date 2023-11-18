@@ -1,13 +1,3 @@
-#include "../types/marker.h"
-#include "../types/int.h"
-#include "../types/mem.h"
-#include "../string/string.c"
-
-#include <stdlib.h>
-#include <string.h>
-
-
-
 typedef struct Vec_String {
     String mut* ptr;
     usize len, cap;
@@ -30,6 +20,9 @@ Vec_String Vec_String_with_capacity(usize const cap) {
 }
 
 void Vec_String_free(Vec_String const* const self) {
+    for (usize mut i = 0; i < self->len; ++i) {
+        String_free(self->ptr + i);
+    }
     free(self->ptr);
     *(Vec_String mut*) self = Vec_String_new();
 }
@@ -45,6 +38,13 @@ void Vec_String_push(Vec_String mut* const self, String const value) {
     }
 
     self->ptr[self->len++] = value;
+}
+
+void Vec_String_clear(Vec_String mut* const self) {
+    for (usize mut i = 0; i < self->len; ++i) {
+        String_free(self->ptr + i);
+    }
+    self->len = 0;
 }
 
 String mut* Vec_String_pop(Vec_String mut* const self) {

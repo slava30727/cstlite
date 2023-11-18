@@ -1,13 +1,3 @@
-#ifndef _CSTLITE_TYPES_INT_H_
-#define _CSTLITE_TYPES_INT_H_
-
-
-
-#include <stddef.h>
-#include <stdint.h>
-
-
-
 typedef uint8_t u8;
 typedef int8_t i8;
 typedef uint16_t u16;
@@ -18,7 +8,3 @@ typedef uint64_t u64;
 typedef int64_t i64;
 typedef size_t usize;
 typedef ptrdiff_t isize;
-
-
-
-#endif // !_CSTLITE_TYPES_INT_H_

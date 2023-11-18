@@ -1,11 +1,8 @@
-#include <stdio.h>
-
+#include "../debug_include_header.h"
 #include "string.c"
 
-
-
 String String_read_line(void) {
-    String mut result;
+    String mut result = String_DEFAULT;
 
     for (char mut cur_char = getchar()
         ; cur_char != '\n'
@@ -15,4 +12,10 @@ String String_read_line(void) {
     }
 
     return result;
+}
+
+void String_print(String const* const self) {
+    for (usize mut i = 0; i < self->len; ++i) {
+        putchar(self->ptr[i]);
+    }
 }

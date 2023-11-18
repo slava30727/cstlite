@@ -1,7 +1,3 @@
-#include "vec_usize.c"
-
-
-
 Vec_usize Vec_usize_clone(Vec_usize const* const self) {
     Vec_usize const result = {
         .ptr = malloc(sizeof(usize) * self->len),
@@ -51,4 +47,27 @@ void Vec_usize_reserve(Vec_usize mut* const self, usize mut additional_cap) {
         : additional_cap;
 
     Vec_usize_reserve_exact(self, additional_cap);
+}
+
+Vec_usize Vec_usize_repeat(usize const count, usize const value) {
+    Vec_usize mut result = Vec_usize_with_capacity(count);
+    result.len = count;
+
+    for (usize mut i = 0; i < result.len; ++i) {
+        result.ptr[i] = value;
+    }
+
+    return result;
+}
+
+void Vec_usize_fill(Vec_usize mut* const self, usize const count, usize const value) {
+    if (self->cap < count) {
+        Vec_usize_reserve(self, count - self->cap);
+    }
+
+    self->len = count;
+
+    for (usize mut i = 0; i < self->len; ++i) {
+        self->ptr[i] = value;
+    }
 }

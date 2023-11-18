@@ -1,13 +1,3 @@
-#include "../types/marker.h"
-#include "../types/int.h"
-#include "../types/mem.h"
-#include "../types/bool.h"
-
-#include <stdlib.h>
-#include <string.h>
-
-
-
 typedef struct Vec_Bool {
     u8 mut* ptr;
     usize len, cap;

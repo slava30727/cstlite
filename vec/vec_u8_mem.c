@@ -1,7 +1,3 @@
-#include "vec_u8.c"
-
-
-
 Vec_u8 Vec_u8_clone(Vec_u8 const* const self) {
     Vec_u8 const result = {
         .ptr = malloc(sizeof(u8) * self->len),
@@ -51,4 +47,23 @@ void Vec_u8_reserve(Vec_u8 mut* const self, usize mut additional_cap) {
         : additional_cap;
 
     Vec_u8_reserve_exact(self, additional_cap);
+}
+
+Vec_u8 Vec_u8_repeat(usize const count, u8 const value) {
+    Vec_u8 mut result = Vec_u8_with_capacity(count);
+    result.len = count;
+
+    memset(result.ptr, value, count);
+
+    return result;
+}
+
+void Vec_u8_fill(Vec_u8 mut* const self, usize const count, u8 const value) {
+    if (self->cap < count) {
+        Vec_u8_reserve(self, count - self->cap);
+    }
+
+    self->len = count;
+
+    memset(self->ptr, value, count);
 }

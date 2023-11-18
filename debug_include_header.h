@@ -4,8 +4,8 @@
 #include <stddef.h>
 #include <string.h>
 
-#include "types/bool.h"
-#include "types/int.h"
-#include "types/marker.h"
-#include "types/mem.h"
-#include "types/shorts.h"
+#include "types/bool.c"
+#include "types/int.c"
+#include "types/marker.c"
+#include "types/mem.c"
+#include "types/shorts.c"

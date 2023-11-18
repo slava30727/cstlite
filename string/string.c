@@ -14,7 +14,7 @@ String String_from_literal(char const* const str) {
         .cap = len
     };
 
-    memcpy_s(result.ptr, result.cap, str, len + 1);
+    memcpy(result.ptr, str, result.len);
 
     return result;
 }

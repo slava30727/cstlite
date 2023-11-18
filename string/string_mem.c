@@ -3,7 +3,7 @@ void String_reserve_exact(String mut* const self, usize const additional_cap) {
         return;
     }
 
-    self->cap = additional_cap + self->len - self->cap;
+    self->cap += additional_cap + self->len - self->cap;
     self->ptr = realloc(self->ptr, self->cap);
 }
 
@@ -24,7 +24,7 @@ void String_reserve(String mut* const self, usize const additional_cap) {
 void String_append(String mut* const self, String const* const src) {
     String_reserve(self, src->len);
 
-    memcpy(src->ptr + self->len, src->ptr, src->len);
+    memcpy(self->ptr + self->len, src->ptr, src->len);
 
     self->len += src->len;
 }

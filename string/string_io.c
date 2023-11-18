@@ -1,6 +1,3 @@
-#include "../debug_include_header.h"
-#include "string.c"
-
 String String_read_line(void) {
     String mut result = String_DEFAULT;
 

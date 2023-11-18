@@ -1,12 +1,3 @@
-#include <stdlib.h>
-#include <string.h>
-
-#include "../types/marker.h"
-#include "../types/int.h"
-#include "../types/mem.h"
-
-
-
 typedef struct String {
     char mut* ptr;
     usize len, cap;
